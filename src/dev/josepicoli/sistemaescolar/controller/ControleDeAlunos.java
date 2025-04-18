@@ -3,6 +3,7 @@ package dev.josepicoli.sistemaescolar.controller;
 import dev.josepicoli.sistemaescolar.exceptions.AlunoNotFoundException;
 import dev.josepicoli.sistemaescolar.model.Aluno;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,5 +53,9 @@ public class ControleDeAlunos {
             throw new AlunoNotFoundException("Aluno não encontrado");
 
         listaAlunos.remove(i);
+    }
+
+    public List<Aluno> listarAlunos() {
+        return new ArrayList<>(listaAlunos);
     }
 }

@@ -4,6 +4,7 @@ import dev.josepicoli.sistemaescolar.controller.ControleDeAlunos;
 import dev.josepicoli.sistemaescolar.exceptions.AlunoNotFoundException;
 import dev.josepicoli.sistemaescolar.model.Aluno;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -17,6 +18,7 @@ public class Menu {
                 2 - alterar aluno.
                 3 - consultar aluno.
                 4 - excluir aluno.
+                5 - listar alunos.
                 0 - encerrar programa.
                 """;
 
@@ -39,6 +41,9 @@ public class Menu {
                     break;
                 case 4:
                     excluirAluno(scanner);
+                    break;
+                case 5:
+                    listarAlunos();
                     break;
                 default:
                     System.out.println("Opção inválida, tente novamente.");
@@ -121,5 +126,17 @@ public class Menu {
         } catch (AlunoNotFoundException e) {
             System.out.println("Aluno com a matrícula " + matricula + " não foi encontrado, exclução não realizada.");
         }
+    }
+
+    private static void listarAlunos() {
+        List<Aluno> listaCopia = alunos.listarAlunos();
+
+        if (listaCopia.isEmpty()) {
+            System.out.println("Nenhum aluno cadastrado");
+            return;
+        }
+
+        for (Aluno aluno : listaCopia)
+            mostrarAluno(aluno);
     }
 }
