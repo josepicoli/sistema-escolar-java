@@ -65,14 +65,45 @@ public class Menu {
                 System.out.print("Digite a idade: ");
                 int idade = scanner.nextInt();
 
-                System.out.print("Digite o sexo: ");
-                Sexo sexo = Sexo.valueOf(scanner.next().toUpperCase());
+                Sexo sexo = pegarSexo(scanner);
 
                 return new Aluno(matricula, nome, idade, sexo);
             } catch (Exception e) {
                 System.out.println("Dados inválidos, tente novamente.");
                 scanner.nextLine();
             }
+        }
+    }
+
+    private static Sexo pegarSexo(Scanner scanner) {
+        while (true) {
+           try {
+               System.out.print("""
+                       Digite a opção do sexo:
+                       1 - Masculino.
+                       2 - Feminino.
+                       3 - Não binário.
+                       4 - Não informado.
+                       """);
+               int opcao = pegarInt(">>> ", scanner);
+
+               switch (opcao) {
+                   case 1:
+                       return Sexo.MASCULINO;
+                   case 2:
+                       return Sexo.FEMININO;
+                   case 3:
+                       return Sexo.NAO_BINARIO;
+                   case 4:
+                       return Sexo.NAO_INFORMADO;
+                   default:
+                       System.out.println("Opção inválida, tente novamente.");
+               }
+
+           } catch (Exception e) {
+               System.out.println("Dado inválido, tente novamente.");
+               scanner.nextLine();
+           }
         }
     }
 
