@@ -3,6 +3,7 @@ package dev.josepicoli.sistemaescolar.view;
 import dev.josepicoli.sistemaescolar.controller.ControleDeAlunos;
 import dev.josepicoli.sistemaescolar.exceptions.AlunoNotFoundException;
 import dev.josepicoli.sistemaescolar.model.Aluno;
+import dev.josepicoli.sistemaescolar.model.Sexo;
 
 import java.util.List;
 import java.util.Scanner;
@@ -47,6 +48,7 @@ public class Menu {
                     break;
                 default:
                     System.out.println("Opção inválida, tente novamente.");
+                    break;
             }
         }
     }
@@ -63,7 +65,10 @@ public class Menu {
                 System.out.print("Digite a idade: ");
                 int idade = scanner.nextInt();
 
-                return new Aluno(matricula, nome, idade);
+                System.out.print("Digite o sexo: ");
+                Sexo sexo = Sexo.valueOf(scanner.next().toUpperCase());
+
+                return new Aluno(matricula, nome, idade, sexo);
             } catch (Exception e) {
                 System.out.println("Dados inválidos, tente novamente.");
                 scanner.nextLine();
@@ -87,8 +92,9 @@ public class Menu {
         String msg = """
                 Matrícula: %d
                 Nome: %s
-                idade: %d
-                """.formatted(aluno.getMatricula(), aluno.getNome(), aluno.getIdade());
+                Idade: %d
+                Sexo: %s
+                """.formatted(aluno.getMatricula(), aluno.getNome(), aluno.getIdade(), aluno.getSexo().getNome());
         System.out.println(msg);
     }
 

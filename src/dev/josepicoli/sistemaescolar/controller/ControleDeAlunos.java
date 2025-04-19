@@ -42,6 +42,7 @@ public class ControleDeAlunos {
         copy.setMatricula(listaAlunos.get(i).getMatricula());
         copy.setNome(listaAlunos.get(i).getNome());
         copy.setIdade(listaAlunos.get(i).getIdade());
+        copy.setSexo(listaAlunos.get(i).getSexo());
 
         return copy;
     }
