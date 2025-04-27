@@ -31,21 +31,11 @@ public class Menu {
                 break;
 
             switch (opcao) {
-                case 1:
-                    incluirAluno(scanner);
-                    break;
-                case 2:
-                    alterarAluno(scanner);
-                    break;
-                case 3:
-                    consultarAluno(scanner);
-                    break;
-                case 4:
-                    excluirAluno(scanner);
-                    break;
-                case 5:
-                    listarAlunos();
-                    break;
+                case 1: incluirAluno(scanner); break;
+                case 2: alterarAluno(scanner); break;
+                case 3: consultarAluno(scanner); break;
+                case 4: excluirAluno(scanner); break;
+                case 5: listarAlunos(); break;
                 default:
                     System.out.println("Opção inválida, tente novamente.");
                     break;
@@ -85,20 +75,21 @@ public class Menu {
                        3 - Não binário.
                        4 - Não informado.
                        """);
+
                int opcao = pegarInt(">>> ", scanner);
 
-               switch (opcao) {
-                   case 1:
-                       return Sexo.MASCULINO;
-                   case 2:
-                       return Sexo.FEMININO;
-                   case 3:
-                       return Sexo.NAO_BINARIO;
-                   case 4:
-                       return Sexo.NAO_INFORMADO;
-                   default:
-                       System.out.println("Opção inválida, tente novamente.");
+               if (opcao > 4 || opcao < 1) {
+                   System.out.println("Opção inválida, tente novamente.");
+                   continue;
                }
+
+               return switch (opcao) {
+                   case 1 -> Sexo.MASCULINO;
+                   case 2 -> Sexo.FEMININO;
+                   case 3 -> Sexo.NAO_BINARIO;
+                   case 4 -> Sexo.NAO_INFORMADO;
+                   default -> throw new IllegalArgumentException("Opção inválida: " + opcao);
+               };
 
            } catch (Exception e) {
                System.out.println("Dado inválido, tente novamente.");
